@@ -8,10 +8,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        primary: "#186f65",
+        secondary: "#8B4513",
+        third: "#ccc",
+        fourth: "#FAF9F6"
+      },
+      fontFamily: {
+        'gulzar': ['Gulzar', 'sans-serif'],
+      },
+      boxShadow: {
+        Card: "0px 0px 30px rgba(81, 94, 125, 0.15);",
       },
     },
   },
