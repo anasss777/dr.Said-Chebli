@@ -57,7 +57,7 @@ const NavbarElements = () => {
           <div
             className={`bg-fourth text-secondary shadow-Card px-10 rounded-3xl w-full`}
           >
-            <ul className={`py-2`}>
+            <ul className={`py-2`} onClick={() => setMenuOpen(false)}>
               <Menu text="الصفحة الرئيسية" href="/" />
               <Menu text="عني" href="/about" />
               <Menu text="مقالاتي" href="/articles" />
