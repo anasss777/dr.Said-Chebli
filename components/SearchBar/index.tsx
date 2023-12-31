@@ -1,4 +1,6 @@
-export const searchSvg = (
+import React from "react";
+
+const searchSvg = (
   <svg
     viewBox="0 0 24 24"
     height={30}
@@ -25,10 +27,21 @@ export const searchSvg = (
   </svg>
 );
 
-// export const searchSvg =
-// export const searchSvg =
-// export const searchSvg =
-// export const searchSvg =
-// export const searchSvg =
-// export const searchSvg =
-// export const searchSvg =
+const SearchBar = () => {
+  return (
+    <div className={`hidden w-fit mx-auto sm:flex items-center`}>
+      <div
+        className={`flex flex-row items-center h-fit w-fit px-2 rounded-3xl bg-white focus-within:border-2 focus-within:border-third`}
+      >
+        {searchSvg}
+        <input
+          type="text"
+          className="h-fit w-fit py-2 px-1 placeholder:text-third rounded-3xl text-gray-500 outline-none bg-transparent"
+          placeholder="إبحث عن مقالة"
+        />
+      </div>
+    </div>
+  );
+};
+
+export default SearchBar;
