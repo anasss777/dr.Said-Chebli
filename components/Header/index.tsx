@@ -4,12 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import NavbarElements from "./NavbarElements";
-import Menu from "./Menu";
-import { searchSvg } from "@/public/svgPaths";
-
-// import NavbarElements from '../NavbarElements';
-// import Account from './Account';
-// import LocaleSwitcher from './LocaleSwitcher';
+import SearchBar from "../SearchBar";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -31,43 +26,37 @@ const Header = () => {
 
   return (
     <header
-      className={`sticky top-0 w-full transition-all rtl centered ${
+      className={`sticky top-0 w-full transition-all z-40 px-5 xl:px-14 ${
         scrolling ? "bg-primary/90" : "bg-primary"
       }`}
     >
-      <div className="container mx-auto flex">
+      <div className="container mx-auto flex flex-row justify-between rtl">
         {/* Logo */}
-        <div className={`w-fit mx-auto`}>
+        <div className={`w-fit`}>
           <Link href="/">
             <p
               className="h-full w-fit text-2xl font-bold font-gulzar bg-gradient-to-r from-third via-white to-third text-transparent
-            bg-clip-text py-2 flex items-center"
+            bg-clip-text py-5 flex items-center"
             >
               د. سعيد الشبلي
             </p>
           </Link>
         </div>
-        <div className={`relative flex items-center justify-center mx-auto`}>
-          <div className={`flex w-full items-center justify-center mx-auto`}>
-            <NavbarElements />
-            <div
-              className={`flex flex-row gap-2 items-center justify-center mx-auto`}
-            >
-              {/* <Account /> */}
-            </div>
-          </div>
+
+        {/* Desktop mode: Navbar elements and search bar */}
+        <div className={`w-fit hidden lg:flex rtl`}>
+          <NavbarElements />
         </div>
-        <div className={`w-fit mx-auto flex items-center`}>
-          <div
-            className={`flex flex-row items-center h-fit w-fit px-2 rounded-3xl bg-white focus-within:border-2 focus-within:border-third`}
-          >
-            {searchSvg}
-            <input
-              type="text"
-              className="h-fit w-fit py-2 px-1 placeholder:text-third rounded-3xl text-gray-500 outline-none bg-transparent"
-              placeholder="إبحث عن مقالة"
-            />
-          </div>
+        <div className={`w-fit hidden lg:flex rtl`}>
+          <SearchBar />
+        </div>
+
+        {/* Mobile mode: Navbar elements and search bar */}
+        <div className={`w-fit flex lg:hidden rtl`}>
+          <SearchBar />
+        </div>
+        <div className={`w-fit flex lg:hidden rtl`}>
+          <NavbarElements />
         </div>
       </div>
     </header>
