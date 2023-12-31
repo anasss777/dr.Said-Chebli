@@ -16,7 +16,9 @@ const NavbarElements = () => {
       <button
         id="navbarToggler"
         onClick={toggleMenu}
-        className={`absolute top-1/2 left-0 ml-2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-white focus:ring-2 lg:hidden`}
+        className={`absolute top-1/2 left-0 ml-2 block -translate-y-1/2 rounded-lg px-3 py-[6px] lg:hidden ${
+          isMenuOpen && "ring-white focus:ring-2"
+        }`}
       >
         <span
           className={`relative my-[6px] block h-[2px] w-[30px] bg-white transition-transform duration-300 ${
