@@ -1,15 +1,25 @@
 import React from "react";
 import BlogCard from "../BlogCard";
 import Link from "next/link";
+import Image from "next/image";
 
 const BlogsSection = () => {
   return (
-    <div className={`px-10 lg:px-32 bg-fourth`}>
+    <div className={`px-10 lg:px-32`}>
       <div className={`w-full py-20 h-fit flex flex-col`}>
         <p
-          className={`text-primary text-2xl lg:text-4xl font-bold mx-auto mb-10`}
+          className={`text-primary text-3xl md:text-4xl lg:text-5xl font-bold mx-auto mb-20`}
         >
           مقالاتي
+          <span>
+            <Image
+              src="/images/underline.png"
+              alt="underline"
+              height={200}
+              width={200}
+              className={`pt-2 w-28 md:w-36 lg:w-48`}
+            />
+          </span>
         </p>
         <div className={`flex flex-wrap justify-center gap-8 mx-auto`}>
           <BlogCard />

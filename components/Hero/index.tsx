@@ -2,24 +2,28 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function Hero() {
   // Hero Data
   const heroData = [
     {
-      imgUrl: "/images/quran.png",
+      imgUrl: "/images/quran1.png",
       heading: "إسم الكتاب الأول",
       text: "تعريف مختصر بالكتاب الأول",
+      bookHref: "/book1",
     },
     {
-      imgUrl: "/images/quran.png",
+      imgUrl: "/images/quran2.png",
       heading: "إسم الكتاب الثاني",
       text: "تعريف مختصر بالكتاب الثاني",
+      bookHref: "/book2",
     },
     {
-      imgUrl: "/images/quran.png",
+      imgUrl: "/images/quran3.png",
       heading: "إسم الكتاب الثالث",
       text: "تعريف مختصر بالكتاب الثالث",
+      bookHref: "/book3",
     },
   ];
 
@@ -41,7 +45,7 @@ function Hero() {
   return (
     <section
       id="home"
-      className="pt-[105px] container mb-40 px-10 lg:px-32 mx-auto"
+      className="pt-[105px] pb-32 container px-10 lg:px-32 mx-auto bg-fourth"
     >
       {heroData.map((slide, index) => (
         <div
@@ -50,7 +54,7 @@ function Hero() {
             index !== currentSlide ? "hidden" : ""
           } `}
         >
-          <div className=" flex flex-wrap items-center">
+          <div className=" flex lg:flex-wrap flex-wrap-reverse items-center">
             {/* Hero Image */}
             <div className="w-full lg:w-5/12">
               <div
@@ -71,7 +75,7 @@ function Hero() {
             {/* Hero Text */}
             <div className="w-full px-4 lg:w-7/12 container mt-7">
               <div
-                className="wow fadeInUp mb-12 lg:mb-0 lg:max-w-[570px] mx-auto"
+                className="mb-12 lg:mb-0 lg:max-w-[570px] mx-auto flex flex-col rtl"
                 data-wow-delay=".2s"
               >
                 <h1
@@ -80,6 +84,13 @@ function Hero() {
                   {slide.heading}
                 </h1>
                 <p className={`mt-8 text-gray-400 rtl`}>{slide.text}</p>
+                <Link
+                  href={slide.bookHref}
+                  className={`h-fit w-fit px-5 py-2 bg-primary rounded-3xl mt-10 text-white text-xl shadow-xl hover:bg-primary/80 transition-all
+                hover:scale-[1.01] duration-300 ease-linear`}
+                >
+                  رؤية المزيد
+                </Link>
               </div>
             </div>
           </div>
@@ -94,7 +105,7 @@ function Hero() {
               key={index}
               className={`py-2 px-4 text-transparent rounded-full cursor-pointer ${
                 index === currentSlide
-                  ? "bg-gradient-to-tr from-secondary via-secondary/60 to-secondary"
+                  ? "bg-gradient-to-tr from-primary via-primary/60 to-primary"
                   : "bg-gray-300"
               }`}
               onClick={() => goToSlide(index)}
