@@ -5,7 +5,7 @@ import React from "react";
 const VideosSection = () => {
   return (
     <div
-      className={`h-fit bg-fourth w-full py-32 px-10 lg:px-32 rtl flex flex-col`}
+      className={`h-fit bg-fourth w-full py-24 px-10 lg:px-32 rtl flex flex-col`}
     >
       {/* Title */}
       <p

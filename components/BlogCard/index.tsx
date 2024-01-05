@@ -10,7 +10,7 @@ const BlogCard = () => {
       lg:h-96 h-fit pb-10 hover:scale-[1.02] transition-all duration-300 ease-linear`}
     >
       <Image
-        src="/images/quran.png"
+        src="/images/quran1.png"
         alt="Quran Image"
         height={600}
         width={600}
