@@ -25,8 +25,8 @@ const Blog = ({ params }: Props) => {
   return (
     <div>
       {posts.map((post, index) => (
-        <div className={`rtl mr-10`}>
-          <p key={index}>
+        <div key={index} className={`rtl mr-10`}>
+          <p>
             {post.title}{" "}
             {/* <span>
             <br />

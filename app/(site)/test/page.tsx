@@ -9,7 +9,7 @@ type Props = {
   params: { blog: string };
 };
 
-const test = ({ params }: Props) => {
+const Test = ({ params }: Props) => {
   const slug = params.blog;
   const [posts, setPosts] = useState<Post[]>([]);
 
@@ -25,10 +25,10 @@ const test = ({ params }: Props) => {
   return (
     <div className={`rtl`}>
       {posts.map((post, index) => (
-        <PortableText value={post.body} />
+        <PortableText key={index} value={post.body} />
       ))}
     </div>
   );
 };
 
-export default test;
+export default Test;
