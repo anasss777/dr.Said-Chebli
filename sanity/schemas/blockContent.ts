@@ -24,14 +24,13 @@ export default defineType({
       // you want, and decide how you want to deal with it where you want to
       // use your content.
       styles: [
-        {title: 'Normal', value: 'normal'},
-        {title: 'H1', value: 'h1'},
-        {title: 'H2', value: 'h2'},
-        {title: 'H3', value: 'h3'},
-        {title: 'H4', value: 'h4'},
-        {title: 'Quote', value: 'blockquote'},
+        {title: 'العنوان الرئيسي', value: 'h1'},
+        {title: 'العنوان الثانوي', value: 'h2'},
+        {title: 'نص', value: 'normal'},
+        {title: 'نقاط', value: 'list'},
+        // {title: 'ترقيم', value: 'number'},
+        // {title: 'Quote', value: 'blockquote'},
       ],
-      lists: [{title: 'Bullet', value: 'bullet'}],
       // Marks let you mark up inline text in the Portable Text Editor
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
@@ -40,36 +39,7 @@ export default defineType({
           {title: 'Strong', value: 'strong'},
           {title: 'Emphasis', value: 'em'},
         ],
-        // Annotations can be any object structure – e.g. a link or a footnote.
-        annotations: [
-          {
-            title: 'URL',
-            name: 'link',
-            type: 'object',
-            fields: [
-              {
-                title: 'URL',
-                name: 'href',
-                type: 'url',
-              },
-            ],
-          },
-        ],
       },
-    }),
-    // You can add additional types here. Note that you can't use
-    // primitive types such as 'string' and 'number' in the same array
-    // as a block type.
-    defineArrayMember({
-      type: 'image',
-      options: {hotspot: true},
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text',
-        }
-      ]
     }),
   ],
 })

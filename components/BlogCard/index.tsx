@@ -2,33 +2,41 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const BlogCard = () => {
+type Props = {
+  categories: Category[];
+  title: string;
+  imageSrc: string;
+  pageLink: string;
+};
+
+const BlogCard = ({ categories, title, imageSrc, pageLink }: Props) => {
   return (
     <Link
-      href="/blog"
+      href={`/${pageLink}`}
       className={`flex flex-col gap-4 justify-start items-end rounded-3xl shadow-Card bg-white w-full sm:w-[350px] md:w-[48%] lg:w-[350px]
-      lg:h-96 h-fit pb-10 hover:scale-[1.02] transition-all duration-300 ease-linear`}
+      pb-5 border hover:scale-[1.01] transition-all duration-300 ease-linear mx-auto`}
     >
-      <Image
-        src="/images/quran1.png"
-        alt="Quran Image"
-        height={600}
-        width={600}
-        className="w-full h-auto object-scale-down rounded-t-3xl"
-      />
+      <div className={`w-full h-[80%]`}>
+        <Image
+          src={imageSrc}
+          alt={title}
+          height={600}
+          width={600}
+          className="object-cover h-full rounded-t-3xl"
+        />
+      </div>
       <div className={`rtl flex-col px-4`}>
+        <div className={`flex flex-row gap-2`}>
+          {categories.map((category, index) => (
+            <p key={index} className={`text-secondary text-sm`}>
+              {category.title}
+            </p>
+          ))}
+        </div>
         <p
-          className={`text-secondary font-bold text-xl w-fit mt-2 hover:text-secondary/70`}
+          className={`text-primary font-bold text-xl w-fit mt-2 hover:text-primary/70`}
         >
-          عرض تجريبي لمكان عنوان المقالة
-        </p>
-        <p className={`text-third font-medium text-lg w-fit mt-3`}>
-          عرض تجريبي لمكان بعض من محتوى المقالة. ثم يتبع{"... "}
-          <span
-            className={`underline hover:text-secondary/70 text-secondary transition-all duration-300 ease-linear`}
-          >
-            تابع القراءة
-          </span>
+          {title}
         </p>
       </div>
     </Link>

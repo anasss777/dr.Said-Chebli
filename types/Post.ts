@@ -17,14 +17,16 @@ export type Post = {
       _type: 'reference';
       _ref: string;
       _key?: string;
+      url: string;
     };
     alt: string;
   };
-  categories: Array<{
-    _type: 'reference';
-    _ref: string;
-    _key?: string;
-  }>;
+  // categories: Array<{
+  //   _type: 'reference';
+  //   _ref: string;
+  //   _key?: string;
+  // }>;
+  categories: Category[];
   publishedAt: string; // Change to Date if 'datetime' type is represented as a string
   body: Array<{
     _type: 'block';

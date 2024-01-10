@@ -25,7 +25,18 @@ const Test = ({ params }: Props) => {
   return (
     <div className={`rtl`}>
       {posts.map((post, index) => (
-        <PortableText key={index} value={post.body} />
+        <PortableText
+          key={index}
+          value={post.body}
+          components={{
+            block: {
+              h1: (props) => <h1 style={{ color: "red" }} {...props} />,
+              h2: (props) => <h1 style={{ color: "blue" }} {...props} />,
+              normal: (props) => <p style={{ color: "green" }} {...props} />,
+              list: ({ children }) => <li>{children}</li>,
+            },
+          }}
+        />
       ))}
     </div>
   );

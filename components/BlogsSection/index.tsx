@@ -1,9 +1,24 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import BlogCard from "../BlogCard";
 import Link from "next/link";
 import Image from "next/image";
+import { Post } from "@/types/Post";
+import { getPosts } from "@/sanity/sanity-utils";
 
 const BlogsSection = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const postsData = await getPosts();
+      setPosts(postsData);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className={`px-10 lg:px-32`}>
       <div className={`w-full py-20 h-fit flex flex-col`}>
@@ -22,9 +37,17 @@ const BlogsSection = () => {
           </span>
         </p>
         <div className={`flex flex-wrap justify-center gap-8 mx-auto`}>
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
+          {posts.map((post, index) => (
+            <BlogCard
+              key={index}
+              categories={post.categories}
+              title={post.title}
+              imageSrc={
+                post.mainImage ? post.mainImage.asset.url : "/images/quran1.png"
+              }
+              pageLink={post.slug.current}
+            />
+          ))}
         </div>
         <Link
           href="/blogs"
