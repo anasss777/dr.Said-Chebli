@@ -12,15 +12,6 @@ const VideosSection = () => {
         className={`text-primary text-3xl md:text-4xl lg:text-5xl font-bold mx-auto mb-20`}
       >
         فيديوهاتي
-        <span>
-          <Image
-            src="/images/underline.png"
-            alt="underline"
-            height={200}
-            width={200}
-            className={`pt-2 w-36 md:w-40 lg:w-56`}
-          />
-        </span>
       </p>
 
       <div className={`flex flex-col gap-3 md:flex-row md:gap-5`}>
