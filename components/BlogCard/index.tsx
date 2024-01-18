@@ -12,7 +12,7 @@ type Props = {
 const BlogCard = ({ categories, title, imageSrc, pageLink }: Props) => {
   return (
     <Link
-      href={`/${pageLink}`}
+      href={`/blog/${pageLink}`}
       className={`flex flex-col gap-4 justify-start items-end rounded-3xl shadow-Card bg-white w-full sm:w-[350px] md:w-[48%] lg:w-[350px]
       pb-5 border hover:scale-[1.01] transition-all duration-300 ease-linear mx-auto`}
     >

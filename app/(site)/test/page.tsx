@@ -1,43 +1,43 @@
 "use client";
 
-import { getPosts } from "@/sanity/sanity-utils";
-import { Post } from "@/types/Post";
-import React, { useEffect, useState } from "react";
-import { PortableText } from "@portabletext/react";
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
-type Props = {
-  params: { blog: string };
-};
+const Test = () => {
+  const [inputValue, setInputValue] = useState(null);
 
-const Test = ({ params }: Props) => {
-  const slug = params.blog;
-  const [posts, setPosts] = useState<Post[]>([]);
+  const handleFileChange = (event: any) => {
+    const file = event.target.files[0];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const postsData = await getPosts();
-      setPosts(postsData);
-    };
+    if (file) {
+      const reader = new FileReader();
 
-    fetchData();
-  }, []);
+      reader.onload = (e: any) => {
+        setInputValue(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div className={`rtl`}>
-      {posts.map((post, index) => (
-        <PortableText
-          key={index}
-          value={post.body}
-          components={{
-            block: {
-              h1: (props) => <h1 style={{ color: "red" }} {...props} />,
-              h2: (props) => <h1 style={{ color: "blue" }} {...props} />,
-              normal: (props) => <p style={{ color: "green" }} {...props} />,
-              list: ({ children }) => <li>{children}</li>,
-            },
-          }}
+      {!inputValue && (
+        <input
+          type="file"
+          className="mx-auto flex border border-primary p-2 mt-52"
+          onChange={handleFileChange}
         />
-      ))}
+      )}
+      {inputValue && (
+        <iframe
+          src={inputValue}
+          width={500}
+          height={500}
+          className="mx-auto flex h-screen w-full"
+        />
+      )}
     </div>
   );
 };

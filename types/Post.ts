@@ -6,11 +6,6 @@ export type Post = {
     _type: 'slug';
     current: string;
   };
-  author: {
-    _type: 'reference';
-    _ref: string;
-    _key?: string;
-  };
   mainImage: {
     _type: 'image';
     asset: {

@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Menu from "./Menu";
-import Link from "next/link";
 
 const NavbarElements = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -38,12 +37,11 @@ const NavbarElements = () => {
       </button>
       <nav
         id="navbarCollapse"
-        className={`hidden lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:py-0
-        lg:shadow-none xl:px-6`}
+        className={`hidden lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:py-0 lg:shadow-none xl:px-6`}
       >
         <ul className={`blcok lg:flex py-2`}>
           <Menu text="الصفحة الرئيسية" href="/" />
-          <Menu text="عني" href="/about" />
+          <Menu text="كتبي" href="/books" />
           <Menu text="مقالاتي" href="/blog" />
           <Menu text="تواصل معي" href="/contact-me" />
         </ul>
@@ -55,11 +53,11 @@ const NavbarElements = () => {
           className={`lg:hidden absolute top-full left-0 ml-2`}
         >
           <div
-            className={`bg-fourth text-secondary shadow-Card px-10 rounded-3xl w-full`}
+            className={`bg-fourth text-primary shadow-Card px-10 rounded-3xl w-full`}
           >
             <ul className={`py-2`} onClick={() => setMenuOpen(false)}>
               <Menu text="الصفحة الرئيسية" href="/" />
-              <Menu text="عني" href="/about" />
+              <Menu text="كتبي" href="/books" />
               <Menu text="مقالاتي" href="/blog" />
               <Menu text="تواصل معي" href="/contact-me" />
             </ul>

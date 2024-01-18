@@ -1,6 +1,7 @@
 import { createClient, groq } from "next-sanity";
 import clientConfig from "./lib/client";
 import { Post } from "@/types/Post";
+import { Book } from "@/types/Book";
 
 export async function getPosts(): Promise<Post[]> {
   return createClient(clientConfig).fetch(
@@ -72,6 +73,33 @@ export async function getPost(slug: string): Promise<Post> {
       }
     }`,
     { slug }
+  );
+}
+
+export async function getBook(slug: string): Promise<Book> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "book" && slug.current == $slug][0]{
+      _id,
+      _type,
+      name,
+      slug {
+        _type,
+        current,
+      },
+      bookURL
+    }`,
+    { slug }
+  );
+}
+
+export async function getBooks(): Promise<Book[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "book"]{
+      _id,
+      _type,
+      name,
+      "fileURL": file.asset->url
+    }`
   );
 }
 
