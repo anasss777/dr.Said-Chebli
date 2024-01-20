@@ -76,41 +76,35 @@ export async function getPost(slug: string): Promise<Post> {
   );
 }
 
-export async function getBook(slug: string): Promise<Book> {
-  return createClient(clientConfig).fetch(
-    groq`*[_type == "book" && slug.current == $slug][0]{
-      _id,
-      _type,
-      name,
-      slug {
-        _type,
-        current,
-      },
-      bookURL
-    }`,
-    { slug }
-  );
-}
-
 export async function getBooks(): Promise<Book[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "book"]{
       _id,
       _type,
       name,
-      "fileURL": file.asset->url
+      "fileURL": file.asset->url,
+      mainImage{
+        asset->{
+          url,
+        },
+      },
+      categories[]-> {
+        title
+      },
+      body[]{
+        _type,
+        style,
+        children[]{
+          _type,
+          text,
+          marks
+        },
+        markDefs[]{
+          _type,
+          _key,
+          href
+        }
+      },
     }`
   );
-}
-
-export async function getCategoryByID(_id: string): Promise<Category> {
-  return createClient(clientConfig).fetch(
-    groq`*[_type == "category" && _id == $_id][0]{
-      _id,
-      _createdAt,
-      title,
-      description
-    }`,
-    {_id}
-  )
 }

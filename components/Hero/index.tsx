@@ -3,31 +3,28 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Book } from "@/types/Book";
+import { getBooks } from "@/sanity/sanity-utils";
+import { PortableText } from "@portabletext/react";
+
+const components = {
+  block: {
+    h1: (props: any) => <h1 className={`mt-8 text-gray-400 rtl`} {...props} />,
+  },
+};
 
 function Hero() {
-  // Hero Data
-  const heroData = [
-    {
-      imgUrl: "/images/quran1.png",
-      heading: "إسم الكتاب الأول",
-      text: "تعريف مختصر بالكتاب الأول",
-      bookHref: "/book1",
-    },
-    {
-      imgUrl: "/images/quran2.png",
-      heading: "إسم الكتاب الثاني",
-      text: "تعريف مختصر بالكتاب الثاني",
-      bookHref: "/book2",
-    },
-    {
-      imgUrl: "/images/quran3.png",
-      heading: "إسم الكتاب الثالث",
-      text: "تعريف مختصر بالكتاب الثالث",
-      bookHref: "/book3",
-    },
-  ];
-
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [books, setBooks] = useState<Book[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const booksData = await getBooks();
+      setBooks(booksData);
+    };
+
+    fetchData();
+  }, []);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
@@ -45,24 +42,28 @@ function Hero() {
   return (
     <section
       id="home"
-      className="pt-[105px] pb-32 container px-10 lg:px-32 mx-auto bg-fourth"
+      className="pt-[105px] pb-32 px-10 lg:px-32 mx-auto bg-fourth"
     >
-      {heroData.map((slide, index) => (
+      {books.map((book, index) => (
         <div
           key={index}
           className={`lg:max-w-[1305px] lg:px-10 pb-3 lg:pb-0 lg:h-96 ${
             index !== currentSlide ? "hidden" : ""
           } `}
         >
-          <div className=" flex lg:flex-wrap flex-wrap-reverse items-center">
+          <div className=" flex flex-wrap items-center">
             {/* Hero Image */}
             <div className="w-full lg:w-5/12">
               <div
-                className="wow fadeInUp relative z-10 mx-auto w-full max-w-[530px] pt-8 lg:mr-0 flex justify-center"
+                className="wow fadeInUp relative z-10 mx-auto w-full max-w-[530px] max-h-96 pt-8 lg:mr-0 flex justify-center"
                 data-wow-delay=".3s"
               >
                 <Image
-                  src={slide.imgUrl}
+                  src={
+                    book.mainImage
+                      ? book.mainImage.asset.url
+                      : "/images/quran3.png"
+                  }
                   alt={`Hero image ${index + 1}`}
                   width={500}
                   height={500}
@@ -81,15 +82,16 @@ function Hero() {
                 <h1
                   className={`text-primary font-bold rtl py-5 text-3xl md:text-5xl xl:text-6xl`}
                 >
-                  {slide.heading}
+                  {book.name}
                 </h1>
-                <p className={`mt-8 text-gray-400 rtl`}>{slide.text}</p>
+                <PortableText value={book?.body} components={components} />
                 <Link
-                  href={slide.bookHref}
+                  href={book.fileURL}
+                  target="_blank"
                   className={`h-fit w-fit px-5 py-2 bg-primary rounded-3xl mt-10 text-white text-xl shadow-xl hover:bg-primary/80 transition-all
                 hover:scale-[1.01] duration-300 ease-linear`}
                 >
-                  رؤية المزيد
+                  قراءة الكتاب
                 </Link>
               </div>
             </div>
@@ -97,10 +99,10 @@ function Hero() {
         </div>
       ))}
 
-      {/* Images' button */}
+      {/* Switch image button */}
       <div className={`flex justify-center rtl`}>
         <div className="flex gap-10 relative top-16 z-10">
-          {heroData.map((_, index) => (
+          {Array.from({ length: 3 }, (_, index) => (
             <div
               key={index}
               className={`py-2 px-4 text-transparent rounded-full cursor-pointer ${

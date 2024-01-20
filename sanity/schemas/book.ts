@@ -14,6 +14,25 @@ export default defineType({
       name: 'file',
       title: 'رابط الكتاب',
       type: 'file',
-    })
+    }),
+    defineField({
+      name: 'categories',
+      title: 'التصنيفات',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'category'}}],
+    }),
+    defineField({
+      name: 'body',
+      title: 'نبذة عن الكتاب',
+      type: 'blockContent',
+    }),
+    defineField({
+      name: 'mainImage',
+      title: 'صورة للكتاب',
+      type: 'image',
+      options: {
+        hotspot: true,
+      }
+    }),
   ],
 })

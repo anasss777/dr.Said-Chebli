@@ -7,12 +7,14 @@ type Props = {
   title: string;
   imageSrc: string;
   pageLink: string;
+  isbook?: boolean;
 };
 
-const BlogCard = ({ categories, title, imageSrc, pageLink }: Props) => {
+const BlogCard = ({ categories, title, imageSrc, pageLink, isbook }: Props) => {
   return (
     <Link
-      href={`/blog/${pageLink}`}
+      href={isbook ? `${pageLink}` : `/blog/${pageLink}`}
+      target={isbook ? "_blank" : "_self"}
       className={`flex flex-col gap-4 justify-start items-end rounded-3xl shadow-Card bg-white w-full sm:w-[350px] md:w-[48%] lg:w-[350px]
       pb-5 border hover:scale-[1.01] transition-all duration-300 ease-linear mx-auto`}
     >
