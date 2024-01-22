@@ -43,6 +43,7 @@ const NavbarElements = () => {
           <Menu text="الصفحة الرئيسية" href="/" />
           <Menu text="كتبي" href="/books" />
           <Menu text="مقالاتي" href="/blog" />
+          <Menu text="فيديوهاتي" href="/videos" />
           <Menu text="تواصل معي" href="/contact-me" />
         </ul>
       </nav>
@@ -59,6 +60,7 @@ const NavbarElements = () => {
               <Menu text="الصفحة الرئيسية" href="/" />
               <Menu text="كتبي" href="/books" />
               <Menu text="مقالاتي" href="/blog" />
+              <Menu text="فيديوهاتي" href="/videos" />
               <Menu text="تواصل معي" href="/contact-me" />
             </ul>
           </div>
