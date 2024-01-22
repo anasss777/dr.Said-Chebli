@@ -36,10 +36,9 @@ const Videos = () => {
 
       <div className={`py-20 px-10 lg:px-32 flex flex-col gap-20 rtl`}>
         {videos.map((video, index) => (
-          <div className={`w-full flex md:flex-row flex-col`}>
+          <div key={index} className={`w-full flex md:flex-row flex-col`}>
             {/* The video section */}
             <iframe
-              key={index}
               width="100%"
               height="300"
               src={video.videoLink}
